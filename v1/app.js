@@ -26,7 +26,7 @@ app.post("/campgrounds", function(req,res){
 	var image= req.body.image;
 	var newCampground = {name:name , image:image}
 	campgrounds.push(newCampground);
-	//rendered sample ex.this is a test2
+	//rendered sample ex.this is a test2 for  v1
 	
 
 	//redirect to campgrounds page.
