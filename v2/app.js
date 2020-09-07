@@ -50,7 +50,7 @@ app.post("/campgrounds", function(req,res){
 					  	//redirect to campgrounds page.
 	res.redirect("/campgrounds");					  }
 				});
-	});
+	}); //checking commit for v2
 	
 
 app.get("/campgrounds/new", function(req,res){
