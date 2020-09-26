@@ -4,30 +4,28 @@ var Campground = require("../models/campground");
 var middleware = require("../middleware/");
 
 //INDEX Route- Show all campgrounds
-router.get("/campgrounds", function(req,res){
-	console.log(req.user);
-	//get all campgrounds from db
-	Campground.find({}, function(err, allCampgrounds){
-		if(err){
-			console.log(err);
-		} else {
-			res.render("campgrounds/campgrounds", {campgrounds:allCampgrounds});
-		}
-	});
-	
-	
+router.get("/campgrounds", function(req, res){
+    // Get all campgrounds from DB
+    Campground.find({}, function(err, allCampgrounds){
+       if(err){
+           console.log(err);
+       } else {
+          res.render("campgrounds/campgrounds",{campgrounds: allCampgrounds, page: 'campgrounds'});
+       }
+    });
 });
 //CREATE Route- add new campground to dB
 router.post("/campgrounds", middleware.isLoggedIn, function(req,res){
 		//get form data and add to campgrounds array.
 	var name= req.body.name;
+	var price= req.body.price;
 	var image= req.body.image;
 	var desc= req.body.description;
 	var author= {
 		id: req.user._id,
 		username: req.user.username
 	};
-	var newCampground = {name: name , image: image, description: desc, author: author}
+	var newCampground = {name: name ,price: price, image: image, description: desc, author: author}
 	//create a new campground and move to db
 	Campground.create(newCampground, function(err, newlyCreated){
 			if(err){
